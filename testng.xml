@@ -8,7 +8,7 @@
         <classes>
             <class name="test.java.Test.MainTest">
                 <methods>
-                    <include name="checkHomePageTitle"/>
+                    <include name="checkAdminPanelTitle"/>
                     <exclude name="testFail"/>
                 </methods>
             </class>
