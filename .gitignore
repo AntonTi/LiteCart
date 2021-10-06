@@ -1,0 +1,8 @@
+.idea/
+target/
+*.iml
+logs/
+*.log
+screenshots/
+src/test/resources/cred.properties
+allure-results/

@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="MainSuite">
+    <listeners>
+        <listener class-name="test.java.Utils.Listener"/>
+        <listener class-name="test.java.Utils.AnnotationTransformer"/>
+    </listeners>
+    <test name="Test">
+        <classes>
+            <class name="test.java.Test.MainTest">
+                <methods>
+                    <include name="checkHomePageTitle"/>
+                    <exclude name="testFail"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
