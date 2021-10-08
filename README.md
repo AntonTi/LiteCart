@@ -1,6 +1,14 @@
 # LiteCart Web application UI Automation Tests (Java)
 
 ## REQUIREMENTS:
+- LiteCart - Application under test (1.3.6);
+- XAMPP (3.3.0);
+
+  **IMPORTANT!**
+  Before running tests delete files **.htpasswd** and **.htaccess** that are in the folder
+  `\\xampp\htdocs\litecart\admin\`
+
+
 - JDK (1.8 or higher);
 - apache maven (3.6.3 or higher);
 - ChromeDriver (latest version);
