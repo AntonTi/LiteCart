@@ -9,6 +9,7 @@
             <class name="test.java.Test.MainTest">
                 <methods>
                     <include name="checkAdminPanelTitle"/>
+                    <include name="checkLeftMenuItemHeadings"/>
                     <exclude name="testFail"/>
                 </methods>
             </class>
