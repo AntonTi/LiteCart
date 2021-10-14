@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.fail;
 
-public class MainTest extends BaseMainTest {
+public class AdminPanelTest extends BaseTest {
 
     @BeforeMethod(description = "login to Admin Panel")
     public void loginToAdmin() {
@@ -21,7 +21,7 @@ public class MainTest extends BaseMainTest {
         adminPanel.logoutAsAdmin();
     }
 
-    @Test(description = "check AdminPanel Title", invocationCount = 1)
+    @Test(description = "check Admin Panel Title", invocationCount = 1)
     @Severity(SeverityLevel.NORMAL)
     public void checkAdminPanelTitle() {
         adminPanel.isShown();
@@ -44,4 +44,6 @@ public class MainTest extends BaseMainTest {
         adminPanel.isShown();
         fail();
     }
+
+
 }

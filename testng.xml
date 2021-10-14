@@ -6,11 +6,16 @@
     </listeners>
     <test name="Test">
         <classes>
-            <class name="test.java.Test.MainTest">
+            <class name="test.java.Test.AdminPanelTest">
                 <methods>
                     <include name="checkAdminPanelTitle"/>
                     <include name="checkLeftMenuItemHeadings"/>
                     <exclude name="testFail"/>
+                </methods>
+            </class>
+            <class name="test.java.Test.MainPageTest">
+                <methods>
+                    <include name="checkMainPageTitle"/>
                 </methods>
             </class>
         </classes>
