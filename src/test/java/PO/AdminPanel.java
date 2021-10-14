@@ -22,10 +22,10 @@ public class AdminPanel extends BasePage {
         super(driver);
     }
 
-    @Step("Login to Admin Panel")
+    @Step("login to Admin Panel")
     public AdminPanel loginAsAdmin() {
         logger.info("Login to Admin Panel");
-        driver.get(PropertyLoader.getProperty("url"));
+        driver.get(PropertyLoader.getProperty("urlAdmin"));
         wait.until(ExpectedConditions.elementToBeClickable(btnLogin));
         driver.findElement(inputUserName).sendKeys(PropertyLoader.getProperty("adminUsername"));
         driver.findElement(inputPassword).sendKeys(PropertyLoader.getProperty("adminPassword"));
@@ -33,7 +33,7 @@ public class AdminPanel extends BasePage {
         return this;
     }
 
-    @Step("Logout from Admin Panel")
+    @Step("logout from Admin Panel")
     public AdminPanel logoutAsAdmin() {
         logger.info("Logout from Admin Panel");
         driver.findElement(btnLogout).click();
