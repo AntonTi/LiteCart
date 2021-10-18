@@ -15,5 +15,12 @@ public class MainPageTest extends BaseTest {
         Assert.assertEquals(mainPage.getTitle(), "Online Store | My Store");
     }
 
+    @Test(description = "check that the Product has only one Sticker")
+    @Severity(SeverityLevel.NORMAL)
+    public void checkProductHasOneSticker() {
+        mainPage.isShown();
+
+        Assert.assertTrue(mainPage.checkProductOneSticker(), "one or more Products don't have one Sticker");
+    }
 
 }

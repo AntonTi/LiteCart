@@ -16,6 +16,7 @@
             <class name="test.java.Test.MainPageTest">
                 <methods>
                     <include name="checkMainPageTitle"/>
+                    <include name="checkProductHasOneSticker"/>
                 </methods>
             </class>
         </classes>
