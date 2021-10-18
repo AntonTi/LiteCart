@@ -16,7 +16,7 @@ public class AdminPanel extends BasePage {
     By btnLogin = By.xpath("//div[@id='box-login']//button[@name='login']");
     By btnLogout = By.xpath("//div[@class='header']//a[@title='Logout']");
     By leftMenuItem = By.xpath("//ul[@id='box-apps-menu']//li[@id='app-']");
-    By leftSubMenuItem = By.cssSelector("li[id^='doc-']");
+    By leftSubMenuItem = By.cssSelector("div#box-apps-menu-wrapper li[id^='doc-']");
 
     public AdminPanel(WebDriver driver) {
         super(driver);
