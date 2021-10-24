@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import test.java.Utils.PropertyLoader;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AdminPanel extends BasePage {
@@ -17,6 +19,9 @@ public class AdminPanel extends BasePage {
     By btnLogout = By.xpath("//div[@class='header']//a[@title='Logout']");
     By leftMenuItem = By.xpath("//ul[@id='box-apps-menu']//li[@id='app-']");
     By leftSubMenuItem = By.cssSelector("div#box-apps-menu-wrapper li[id^='doc-']");
+    By leftMenuItemCountries = By.xpath("//ul[@id='box-apps-menu']//span[contains(text(),'Countries')]");
+    By footerCountries = By.cssSelector("form[name='countries_form'] tr.footer");
+    By countryName = By.xpath("//table[@class='dataTable']//td[5]");
 
     public AdminPanel(WebDriver driver) {
         super(driver);
@@ -78,6 +83,34 @@ public class AdminPanel extends BasePage {
                 logger.error("one or more Left Menu Items don't contain a heading");
                 return false;
             }
+        }
+        return true;
+    }
+
+    @Step("go to Left Menu Item 'Countries'")
+    public AdminPanel goToItemCountries() {
+        logger.info("go to Left Menu Item 'Countries'");
+        driver.findElement(leftMenuItemCountries).click();
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(footerCountries));
+        return this;
+    }
+
+    @Step("check that Countries are in alphabetical order")
+    public boolean checkCountriesSorting() {
+        logger.info("check that Countries are in alphabetical order");
+        List<WebElement> countryNamesEl = driver.findElements(countryName);
+        List<String> countryNames = new ArrayList<String>();
+        for (WebElement el : countryNamesEl) {
+            //System.out.println(el.getText());
+            countryNames.add(el.getText());
+        }
+        List<String> countryNamesSort = new ArrayList<String>(countryNames);
+        Collections.sort(countryNamesSort);
+        //countryNames.set(0, "afghanistan");
+        //System.out.println(countryNamesSort.equals(countryNames));
+        if (!countryNamesSort.equals(countryNames)) {
+            logger.error("Countries are not in alphabetical order");
+            return false;
         }
         return true;
     }

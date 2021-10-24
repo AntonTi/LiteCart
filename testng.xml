@@ -10,6 +10,7 @@
                 <methods>
                     <include name="checkAdminPanelTitle"/>
                     <include name="checkLeftMenuItemHeadings"/>
+                    <include name="checkCountriesSorting"/>
                     <exclude name="testFail"/>
                 </methods>
             </class>

@@ -21,6 +21,13 @@ public class AdminPanelTest extends BaseTest {
         adminPanel.logoutAsAdmin();
     }
 
+    @Test(description = "debug Test for fail result")
+    @Severity(SeverityLevel.TRIVIAL)
+    public void testFail() {
+        adminPanel.isShown();
+        fail();
+    }
+
     @Test(description = "check Admin Panel Title", invocationCount = 1)
     @Severity(SeverityLevel.NORMAL)
     public void checkAdminPanelTitle() {
@@ -38,11 +45,14 @@ public class AdminPanelTest extends BaseTest {
                 "one or more Left Menu Items or Sub-items don't contain a heading");
     }
 
-    @Test(description = "debug Test for fail result")
+    @Test(description = "check the sorting of Countries in the Left Menu")
     @Severity(SeverityLevel.TRIVIAL)
-    public void testFail() {
+    public void checkCountriesSorting() {
         adminPanel.isShown();
-        fail();
+        adminPanel.goToItemCountries();
+
+        Assert.assertTrue(adminPanel.checkCountriesSorting(),
+                "Countries are not in alphabetical order");
     }
 
 
