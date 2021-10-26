@@ -11,6 +11,7 @@
                     <include name="checkAdminPanelTitle"/>
                     <include name="checkLeftMenuItemHeadings"/>
                     <include name="checkCountriesSorting"/>
+                    <include name="checkCountryZonesSorting"/>
                     <exclude name="testFail"/>
                 </methods>
             </class>
