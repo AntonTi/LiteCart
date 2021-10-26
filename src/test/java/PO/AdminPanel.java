@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 public class AdminPanel extends BasePage {
 
     By inputUserName = By.xpath("//form[@name='login_form']//input[@name='username']");
@@ -21,7 +23,11 @@ public class AdminPanel extends BasePage {
     By leftSubMenuItem = By.cssSelector("div#box-apps-menu-wrapper li[id^='doc-']");
     By leftMenuItemCountries = By.xpath("//ul[@id='box-apps-menu']//span[contains(text(),'Countries')]");
     By footerCountries = By.cssSelector("form[name='countries_form'] tr.footer");
-    By countryName = By.xpath("//table[@class='dataTable']//td[5]");
+    By countryName = By.xpath("//table[@class='dataTable']//td[5]//a");
+    By countryZoneCount = By.xpath("//table[@class='dataTable']//td[6]");
+    By countryZoneName = By.cssSelector("[name$='][name]']");
+    By btnSet = By.xpath("//span[@class='button-set']");
+
 
     public AdminPanel(WebDriver driver) {
         super(driver);
@@ -42,7 +48,7 @@ public class AdminPanel extends BasePage {
     public AdminPanel logoutAsAdmin() {
         logger.info("Logout from Admin Panel");
         driver.findElement(btnLogout).click();
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(btnLogin)));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(btnLogin));
         return this;
     }
 
@@ -99,18 +105,48 @@ public class AdminPanel extends BasePage {
     public boolean checkCountriesSorting() {
         logger.info("check that Countries are in alphabetical order");
         List<WebElement> countryNamesEl = driver.findElements(countryName);
-        List<String> countryNames = new ArrayList<String>();
+        List<String> countryNames = new ArrayList<>();
         for (WebElement el : countryNamesEl) {
             //System.out.println(el.getText());
             countryNames.add(el.getText());
         }
-        List<String> countryNamesSort = new ArrayList<String>(countryNames);
+        List<String> countryNamesSort = new ArrayList<>(countryNames);
         Collections.sort(countryNamesSort);
         //countryNames.set(0, "afghanistan");
         //System.out.println(countryNamesSort.equals(countryNames));
         if (!countryNamesSort.equals(countryNames)) {
             logger.error("Countries are not in alphabetical order");
             return false;
+        }
+        return true;
+    }
+
+    @Step("check that Country Zones are in alphabetical order")
+    public boolean checkCountryZonesSorting() {
+        logger.info("check that Country Zones are in alphabetical order");
+        List<WebElement> countryNames = driver.findElements(countryName);
+        for (int i = 0; i < countryNames.size(); i++) {
+            List<WebElement> countryZoneCountList = driver.findElements(countryZoneCount);
+            if (parseInt((countryZoneCountList.get(i)).getText()) > 0) {
+                countryNames = driver.findElements(countryName);
+                (countryNames.get(i)).click();
+                //Thread.sleep(2000);
+                wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(btnSet));
+                List<WebElement> countryZoneNameList = driver.findElements(countryZoneName);
+                List<String> countryZoneNameStr = new ArrayList<>();
+                for (WebElement el : countryZoneNameList) {
+                    countryZoneNameStr.add(el.getAttribute("value"));
+                }
+                List<String> countryZoneNameSort = new ArrayList<>(countryZoneNameStr);
+                Collections.sort(countryZoneNameSort);
+                //Collections.reverse(countryZoneNameSort);
+                //countryZoneNameStr.set(0, "Alberta");
+                if (!countryZoneNameSort.equals(countryZoneNameStr)) {
+                    logger.error("Country Zones are not in alphabetical order");
+                    return false;
+                }
+                driver.navigate().back();
+            }
         }
         return true;
     }

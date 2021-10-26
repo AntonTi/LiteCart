@@ -45,14 +45,25 @@ public class AdminPanelTest extends BaseTest {
                 "one or more Left Menu Items or Sub-items don't contain a heading");
     }
 
-    @Test(description = "check the sorting of Countries in the Left Menu")
-    @Severity(SeverityLevel.TRIVIAL)
+    @Test(description = "check the sorting of Countries in the Left Menu: 'Countries'")
+    @Severity(SeverityLevel.NORMAL)
     public void checkCountriesSorting() {
         adminPanel.isShown();
         adminPanel.goToItemCountries();
 
         Assert.assertTrue(adminPanel.checkCountriesSorting(),
                 "Countries are not in alphabetical order");
+    }
+
+    @Test(description = "check the sorting of Country Zones in the Left Menu: 'Countries'")
+    @Severity(SeverityLevel.NORMAL)
+    public void checkCountryZonesSorting() {
+        adminPanel.isShown();
+        adminPanel.goToItemCountries();
+
+        Assert.assertTrue(adminPanel.checkCountryZonesSorting(),
+                "Country Zones are not in alphabetical order");
+
     }
 
 
