@@ -22,10 +22,14 @@ public class AdminPanel extends BasePage {
     By leftMenuItem = By.xpath("//ul[@id='box-apps-menu']//li[@id='app-']");
     By leftSubMenuItem = By.cssSelector("div#box-apps-menu-wrapper li[id^='doc-']");
     By leftMenuItemCountries = By.xpath("//ul[@id='box-apps-menu']//span[contains(text(),'Countries')]");
+    By leftMenuItemGeoZones = By.xpath("//ul[@id='box-apps-menu']//span[contains(text(),'Geo Zones')]");
     By footerCountries = By.cssSelector("form[name='countries_form'] tr.footer");
+    By footerGeoZones = By.cssSelector("table.dataTable tr.footer");
     By countryName = By.xpath("//table[@class='dataTable']//td[5]//a");
+    By countryNameGeoZones = By.xpath("//table[@class='dataTable']//td[3]//a");
     By countryZoneCount = By.xpath("//table[@class='dataTable']//td[6]");
     By countryZoneName = By.cssSelector("[name$='][name]']");
+    By countryGeoZoneName = By.xpath("//table[@class='dataTable']//td[3]//option[@selected]");
     By btnSet = By.xpath("//span[@class='button-set']");
 
 
@@ -101,6 +105,14 @@ public class AdminPanel extends BasePage {
         return this;
     }
 
+    @Step("go to Left Menu Item 'Geo Zones'")
+    public AdminPanel goToItemGeoZones() {
+        logger.info("go to Left Menu Item 'Geo Zones'");
+        driver.findElement(leftMenuItemGeoZones).click();
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(footerGeoZones));
+        return this;
+    }
+
     @Step("check that Countries are in alphabetical order")
     public boolean checkCountriesSorting() {
         logger.info("check that Countries are in alphabetical order");
@@ -147,6 +159,31 @@ public class AdminPanel extends BasePage {
                 }
                 driver.navigate().back();
             }
+        }
+        return true;
+    }
+
+    @Step("check that all Countries Geo Zones are in alphabetical order")
+    public boolean checkCountryGeoZonesSorting() {
+        logger.info("check that all Countries Geo Zones are in alphabetical order");
+        List<WebElement> countryNameEl = driver.findElements(countryNameGeoZones);
+        for (int i = 0; i < countryNameEl.size(); i++) {
+            countryNameEl = driver.findElements(countryNameGeoZones);
+            countryNameEl.get(i).click();
+            //Thread.sleep(2000);
+            List<WebElement> countryGeoZoneNameEl = driver.findElements(countryGeoZoneName);
+            List<String> countryGeoZoneName = new ArrayList<>();
+            for (WebElement el : countryGeoZoneNameEl) {
+                countryGeoZoneName.add(el.getText());
+            }
+            List<String> countryGeoZoneNameSort = new ArrayList<>(countryGeoZoneName);
+            Collections.sort(countryGeoZoneNameSort);
+            //countryGeoZoneName.set(0, "Alberta");
+            if (!countryGeoZoneNameSort.equals(countryGeoZoneName)) {
+                logger.error("Country Geo Zones are not in alphabetical order");
+                return false;
+            }
+            driver.navigate().back();
         }
         return true;
     }
