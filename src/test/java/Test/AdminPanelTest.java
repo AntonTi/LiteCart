@@ -66,5 +66,16 @@ public class AdminPanelTest extends BaseTest {
 
     }
 
+    @Test(description = "check the all Countries sorting of Geo Zones in the Left Menu: 'Geo Zones'")
+    @Severity(SeverityLevel.NORMAL)
+    public void checkCountryGeoZonesSorting() {
+        adminPanel.isShown();
+        adminPanel.goToItemGeoZones();
+
+        Assert.assertTrue(adminPanel.checkCountryGeoZonesSorting(),
+                "Country Geo Zones are not in alphabetical order");
+
+    }
+
 
 }

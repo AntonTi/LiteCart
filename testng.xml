@@ -12,6 +12,7 @@
                     <include name="checkLeftMenuItemHeadings"/>
                     <include name="checkCountriesSorting"/>
                     <include name="checkCountryZonesSorting"/>
+                    <include name="checkCountryGeoZonesSorting"/>
                     <exclude name="testFail"/>
                 </methods>
             </class>
