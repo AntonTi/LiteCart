@@ -20,6 +20,8 @@
                 <methods>
                     <include name="checkMainPageTitle"/>
                     <include name="checkProductHasOneSticker"/>
+                    <include name="checkCorrectProductName"/>
+                    <include name="checkProductRegularPrice"/>
                 </methods>
             </class>
         </classes>

@@ -14,6 +14,10 @@ public class MainPage extends BasePage {
     By footer = By.cssSelector("footer#footer");
     By product = By.cssSelector("div.content .image-wrapper");
     By sticker = By.cssSelector("div.content div.sticker");
+    By firstProductInCampaigns = By.cssSelector("#box-campaigns  a.link");
+    By productNameCampaigns = By.cssSelector("#box-campaigns  a.link div.name");
+    By productRegularPriceCampaigns = By.cssSelector("#box-campaigns  a.link .regular-price");
+
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -48,6 +52,23 @@ public class MainPage extends BasePage {
             }
         }
         return true;
+    }
+
+    @Step("go to Product Page")
+    public MainPage goToProductPage() {
+        logger.info("go to Product Page");
+        driver.findElement(firstProductInCampaigns).click();
+        return this;
+    }
+
+    public String getProductNameCampaigns() {
+        String name = driver.findElement(productNameCampaigns).getText();
+        return name;
+    }
+
+    public String getProductRegularPriceCampaigns() {
+        String name = driver.findElement(productRegularPriceCampaigns).getText();
+        return name;
     }
 
 
