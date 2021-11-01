@@ -17,6 +17,7 @@ public class MainPage extends BasePage {
     By firstProductInCampaigns = By.cssSelector("#box-campaigns  a.link");
     By productNameCampaigns = By.cssSelector("#box-campaigns  a.link div.name");
     By productRegularPriceCampaigns = By.cssSelector("#box-campaigns  a.link .regular-price");
+    By productCampaignPriceCampaigns = By.cssSelector("#box-campaigns  a.link .campaign-price");
 
 
     public MainPage(WebDriver driver) {
@@ -61,14 +62,25 @@ public class MainPage extends BasePage {
         return this;
     }
 
+    @Step("get first Product Name in category 'Campaigns'")
     public String getProductNameCampaigns() {
-        String name = driver.findElement(productNameCampaigns).getText();
-        return name;
+        logger.info("get first Product Name in category 'Campaigns'");
+        String nameProd = driver.findElement(productNameCampaigns).getText();
+        return nameProd;
     }
 
+    @Step("get first Product Regular Price in category 'Campaigns'")
     public String getProductRegularPriceCampaigns() {
-        String name = driver.findElement(productRegularPriceCampaigns).getText();
-        return name;
+        logger.info("get first Product Regular Price in category 'Campaigns'");
+        String priceReg = driver.findElement(productRegularPriceCampaigns).getText();
+        return priceReg;
+    }
+
+    @Step("get first Product Campaign Price in category 'Campaigns'")
+    public String getProductCampaignPriceCampaigns() {
+        logger.info("get first Product Campaign Price in category 'Campaigns'");
+        String priceCamp = driver.findElement(productCampaignPriceCampaigns).getText();
+        return priceCamp;
     }
 
 

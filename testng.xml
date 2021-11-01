@@ -22,6 +22,7 @@
                     <include name="checkProductHasOneSticker"/>
                     <include name="checkCorrectProductName"/>
                     <include name="checkProductRegularPrice"/>
+                    <include name="checkProductCampaignPrice"/>
                 </methods>
             </class>
         </classes>
