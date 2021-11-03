@@ -36,5 +36,47 @@ public class ProductPage extends BasePage {
         return priceCamp;
     }
 
+    @Step("get Product REGULAR PRICE COLOR")
+    public String getProductRegularPriceColor() {
+        logger.info("get Product REGULAR PRICE COLOR");
+        String priceColor = driver.findElement(productRegularPrice).getCssValue("color");
+        return priceColor;
+    }
+
+    @Step("get Product REGULAR STRIKETHROUGH PRICE")
+    public String getProductRegularStrikePrice() {
+        logger.info("get Product REGULAR STRIKETHROUGH PRICE");
+        String priceStrike = driver.findElement(productRegularPrice).getTagName();
+        return priceStrike;
+    }
+
+    @Step("get Product REGULAR PRICE FONT SIZE")
+    public String getProductRegularPriceFontSize() {
+        logger.info("get Product REGULAR PRICE FONT SIZE");
+        String priceFontSize = driver.findElement(productRegularPrice).getCssValue("font-size");
+        return priceFontSize;
+    }
+
+    @Step("get Product CAMPAIGN PRICE COLOR")
+    public String getProductCampaignPriceColor() {
+        logger.info("get Product CAMPAIGN PRICE COLOR");
+        String priceColor = driver.findElement(productCampaignPrice).getCssValue("color");
+        return priceColor;
+    }
+
+    @Step("get Product CAMPAIGN BOLD PRICE")
+    public String getProductCampaignBoldPrice() {
+        logger.info("get Product CAMPAIGN BOLD PRICE");
+        String priceBold = driver.findElement(productCampaignPrice).getTagName();
+        return priceBold;
+    }
+
+    @Step("get Product CAMPAIGN PRICE FONT SIZE")
+    public String getProductCampaignPriceFontSize() {
+        logger.info("get Product CAMPAIGN PRICE FONT SIZE");
+        String priceFontSize = driver.findElement(productCampaignPrice).getCssValue("font-size");
+        return priceFontSize;
+    }
+
 
 }

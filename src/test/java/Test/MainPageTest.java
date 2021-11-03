@@ -104,5 +104,59 @@ public class MainPageTest extends BaseTest {
                 "Product Campaign Price Font Size in category 'Campaigns' doesn't match");
     }
 
+    @Test(description = "check Product REGULAR PRICE COLOR on Product Page")
+    public void checkProdRegularPriceColor() {
+        mainPage.isShown();
+        mainPage.goToProductPage();
+
+        Assert.assertEquals(productPage.getProductRegularPriceColor(), "rgba(102, 102, 102, 1)",
+                "Product Regular Price Color on Product Page doesn't match");
+    }
+
+    @Test(description = "check Product REGULAR STRIKETHROUGH PRICE on Product Page")
+    public void checkProdRegularPriceStrike() {
+        mainPage.isShown();
+        mainPage.goToProductPage();
+
+        Assert.assertEquals(productPage.getProductRegularStrikePrice(), "s",
+                "Product Regular Price on Product Page must be strikethrough");
+    }
+
+    @Test(description = "check Product REGULAR PRICE FONT SIZE on Product Page")
+    public void checkProdRegularPriceFontSize() {
+        mainPage.isShown();
+        mainPage.goToProductPage();
+
+        Assert.assertEquals(productPage.getProductRegularPriceFontSize(), "16px",
+                "Product Regular Price Font Size on Product Page doesn't match");
+    }
+
+    @Test(description = "check Product CAMPAIGN PRICE COLOR on Product Page")
+    public void checkProdCampaignPriceColor() {
+        mainPage.isShown();
+        mainPage.goToProductPage();
+
+        Assert.assertEquals(productPage.getProductCampaignPriceColor(), "rgba(204, 0, 0, 1)",
+                "Product Campaign Price Color on Product Page doesn't match");
+    }
+
+    @Test(description = "check Product CAMPAIGN BOLD PRICE on Product Page")
+    public void checkProdCampaignBoldPrice() {
+        mainPage.isShown();
+        mainPage.goToProductPage();
+
+        Assert.assertEquals(productPage.getProductCampaignBoldPrice(), "strong",
+                "Product Campaign Price on Product Page must be bold");
+    }
+
+    @Test(description = "check Product CAMPAIGN PRICE FONT SIZE on Product Page")
+    public void checkProdCampaignPriceFontSize() {
+        mainPage.isShown();
+        mainPage.goToProductPage();
+
+        Assert.assertEquals(productPage.getProductCampaignPriceFontSize(), "22px",
+                "Product Campaign Price Font Size on Product Page doesn't match");
+    }
+
 
 }
