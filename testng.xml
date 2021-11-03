@@ -23,6 +23,12 @@
                     <include name="checkCorrectProductName"/>
                     <include name="checkProductRegularPrice"/>
                     <include name="checkProductCampaignPrice"/>
+                    <include name="checkProductRegularPriceColor"/>
+                    <include name="checkProductRegularPriceStrike"/>
+                    <include name="checkProductRegularPriceFontSize"/>
+                    <include name="checkProductCampaignPriceColor"/>
+                    <include name="checkProductCampaignBoldPrice"/>
+                    <include name="checkProductCampaignPriceFontSize"/>
                 </methods>
             </class>
         </classes>
