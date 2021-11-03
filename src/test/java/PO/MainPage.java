@@ -62,25 +62,67 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    @Step("get first Product Name in category 'Campaigns'")
+    @Step("get first Product NAME in category 'Campaigns'")
     public String getProductNameCampaigns() {
-        logger.info("get first Product Name in category 'Campaigns'");
+        logger.info("get first Product NAME in category 'Campaigns'");
         String nameProd = driver.findElement(productNameCampaigns).getText();
         return nameProd;
     }
 
-    @Step("get first Product Regular Price in category 'Campaigns'")
+    @Step("get first Product REGULAR PRICE in category 'Campaigns'")
     public String getProductRegularPriceCampaigns() {
-        logger.info("get first Product Regular Price in category 'Campaigns'");
+        logger.info("get first Product REGULAR PRICE in category 'Campaigns'");
         String priceReg = driver.findElement(productRegularPriceCampaigns).getText();
         return priceReg;
     }
 
-    @Step("get first Product Campaign Price in category 'Campaigns'")
+    @Step("get first Product CAMPAIGN PRICE in category 'Campaigns'")
     public String getProductCampaignPriceCampaigns() {
-        logger.info("get first Product Campaign Price in category 'Campaigns'");
+        logger.info("get first Product CAMPAIGN PRICE in category 'Campaigns'");
         String priceCamp = driver.findElement(productCampaignPriceCampaigns).getText();
         return priceCamp;
+    }
+
+    @Step("get first Product REGULAR PRICE COLOR in category 'Campaigns'")
+    public String getProductRegularPriceColor() {
+        logger.info("get first Product REGULAR PRICE COLOR in category 'Campaigns'");
+        String priceColor = driver.findElement(productRegularPriceCampaigns).getCssValue("color");
+        return priceColor;
+    }
+
+    @Step("get first Product REGULAR STRIKETHROUGH PRICE in category 'Campaigns'")
+    public String getProductRegularStrikePrice() {
+        logger.info("get first Product REGULAR STRIKETHROUGH PRICE in category 'Campaigns'");
+        String priceStrike = driver.findElement(productRegularPriceCampaigns).getTagName();
+        return priceStrike;
+    }
+
+    @Step("get first Product REGULAR PRICE FONT SIZE in category 'Campaigns'")
+    public String getProductRegularPriceFontSize() {
+        logger.info("get first Product REGULAR PRICE FONT SIZE in category 'Campaigns'");
+        String priceFontSize = driver.findElement(productRegularPriceCampaigns).getCssValue("font-size");
+        return priceFontSize;
+    }
+
+    @Step("get first Product CAMPAIGN PRICE COLOR in category 'Campaigns'")
+    public String getProductCampaignPriceColor() {
+        logger.info("get first Product CAMPAIGN PRICE COLOR in category 'Campaigns'");
+        String priceColor = driver.findElement(productCampaignPriceCampaigns).getCssValue("color");
+        return priceColor;
+    }
+
+    @Step("get first Product CAMPAIGN BOLD PRICE in category 'Campaigns'")
+    public String getProductCampaignBoldPrice() {
+        logger.info("get first Product CAMPAIGN BOLD PRICE in category 'Campaigns'");
+        String priceBold = driver.findElement(productCampaignPriceCampaigns).getTagName();
+        return priceBold;
+    }
+
+    @Step("get first Product CAMPAIGN PRICE FONT SIZE in category 'Campaigns'")
+    public String getProductCampaignPriceFontSize() {
+        logger.info("get first Product CAMPAIGN PRICE FONT SIZE in category 'Campaigns'");
+        String priceFontSize = driver.findElement(productCampaignPriceCampaigns).getCssValue("font-size");
+        return priceFontSize;
     }
 
 
