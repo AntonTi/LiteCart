@@ -18,6 +18,7 @@ public class MainPage extends BasePage {
     By productNameCampaigns = By.cssSelector("#box-campaigns  a.link div.name");
     By productRegularPriceCampaigns = By.cssSelector("#box-campaigns  a.link .regular-price");
     By productCampaignPriceCampaigns = By.cssSelector("#box-campaigns  a.link .campaign-price");
+    By btnCreateUserAccount = By.xpath("//a[contains(text(),'New customers click here')]");
 
 
     public MainPage(WebDriver driver) {
@@ -123,6 +124,13 @@ public class MainPage extends BasePage {
         logger.info("get first Product CAMPAIGN PRICE FONT SIZE in category 'Campaigns'");
         String priceFontSize = driver.findElement(productCampaignPriceCampaigns).getCssValue("font-size");
         return priceFontSize;
+    }
+
+    @Step("go to User Registration Page")
+    public MainPage goToUserRegistrationPage() {
+        logger.info("go to User Registration Page");
+        driver.findElement(btnCreateUserAccount).click();
+        return this;
     }
 
 

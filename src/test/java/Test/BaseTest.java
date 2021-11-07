@@ -8,12 +8,14 @@ import org.testng.annotations.BeforeMethod;
 import test.java.PO.AdminPanel;
 import test.java.PO.MainPage;
 import test.java.PO.ProductPage;
+import test.java.PO.UserRegistrationPage;
 
 public class BaseTest {
     WebDriver driver;
     AdminPanel adminPanel;
     MainPage mainPage;
     ProductPage productPage;
+    UserRegistrationPage userRegistrationPage;
 
     @BeforeMethod(description = "Initialize custom driver and Page factory")
     public void init(ITestContext context) {
@@ -22,6 +24,7 @@ public class BaseTest {
         adminPanel = new AdminPanel(driver);
         mainPage = new MainPage(driver);
         productPage = new ProductPage(driver);
+        userRegistrationPage = new UserRegistrationPage(driver);
     }
 
     @AfterMethod(description = "Finalize custom driver")
