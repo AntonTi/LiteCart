@@ -158,5 +158,18 @@ public class MainPageTest extends BaseTest {
                 "Product Campaign Price Font Size on Product Page doesn't match");
     }
 
+    // IMPORTANT!!! This test requires manual filling of the captcha field.
+    @Test(description = "check User Registration")
+    public void checkUserRegistration() {
+        mainPage.isShown();
+        mainPage.goToUserRegistrationPage();
+        userRegistrationPage.isShown();
+        userRegistrationPage.fillInRegistrationForm();
+        userRegistrationPage.sendRegistrationForm();
+
+        Assert.assertEquals(userRegistrationPage.getMessageSuccessRegistration(),
+                "Your customer account has been created.");
+    }
+
 
 }
