@@ -5,10 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import test.java.PO.AdminPanel;
-import test.java.PO.MainPage;
-import test.java.PO.ProductPage;
-import test.java.PO.UserRegistrationPage;
+import test.java.PO.*;
 
 public class BaseTest {
     WebDriver driver;
@@ -16,6 +13,7 @@ public class BaseTest {
     MainPage mainPage;
     ProductPage productPage;
     UserRegistrationPage userRegistrationPage;
+    UserPersonalArea userPersonalArea;
 
     @BeforeMethod(description = "Initialize custom driver and Page factory")
     public void init(ITestContext context) {
@@ -25,6 +23,7 @@ public class BaseTest {
         mainPage = new MainPage(driver);
         productPage = new ProductPage(driver);
         userRegistrationPage = new UserRegistrationPage(driver);
+        userPersonalArea = new UserPersonalArea(driver);
     }
 
     @AfterMethod(description = "Finalize custom driver")

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import test.java.Models.User;
 import test.java.Utils.PropertyLoader;
 
 public class UserRegistrationPage extends BasePage {
@@ -29,6 +30,11 @@ public class UserRegistrationPage extends BasePage {
         super(driver);
     }
 
+    User newUser = new User(PropertyLoader.getProperty("userFirstName"), PropertyLoader.getProperty("userLastName"),
+            PropertyLoader.getProperty("userAddress1"), PropertyLoader.getProperty("userPostcode"),
+            PropertyLoader.getProperty("userCity"), emailGenerator, PropertyLoader.getProperty("userPhone"),
+            PropertyLoader.getProperty("userPassword"));
+
     @Step("User Registration Page is shown")
     public UserRegistrationPage isShown() {
         logger.info("User Registration Page is shown");
@@ -39,15 +45,15 @@ public class UserRegistrationPage extends BasePage {
     @Step("fill in User Registration Form")
     public UserRegistrationPage fillInRegistrationForm() {
         logger.info("fill in User Registration Form");
-        driver.findElement(firstName).sendKeys(PropertyLoader.getProperty("userFirstName"));
-        driver.findElement(lastName).sendKeys(PropertyLoader.getProperty("userLastName"));
-        driver.findElement(address1).sendKeys(PropertyLoader.getProperty("userAddress1"));
-        driver.findElement(postcode).sendKeys(PropertyLoader.getProperty("userPostcode"));
-        driver.findElement(city).sendKeys(PropertyLoader.getProperty("userCity"));
-        driver.findElement(email).sendKeys(emailGenerator);
-        driver.findElement(phone).sendKeys(PropertyLoader.getProperty("userPhone"));
-        driver.findElement(password).sendKeys(PropertyLoader.getProperty("userPassword"));
-        driver.findElement(passwordConf).sendKeys(PropertyLoader.getProperty("userPassword"));
+        driver.findElement(firstName).sendKeys(newUser.firstName);
+        driver.findElement(lastName).sendKeys(newUser.lastName);
+        driver.findElement(address1).sendKeys(newUser.address1);
+        driver.findElement(postcode).sendKeys(newUser.postcode);
+        driver.findElement(city).sendKeys(newUser.city);
+        driver.findElement(email).sendKeys(newUser.email);
+        driver.findElement(phone).sendKeys(newUser.phone);
+        driver.findElement(password).sendKeys(newUser.password);
+        driver.findElement(passwordConf).sendKeys(newUser.password);
         driver.findElement(captcha).click();
         WebDriverWait waitForCaptcha = new WebDriverWait(driver, 20);
         //Wait until text box has value equal 4 characters (Captcha has 4 characters)
