@@ -4,6 +4,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import test.java.Utils.PropertyLoader;
 
 public class MainPageTest extends BaseTest {
 
@@ -159,8 +160,9 @@ public class MainPageTest extends BaseTest {
     }
 
     // IMPORTANT!!! This test requires manual filling of the captcha field.
-    @Test(description = "check User Registration")
+    @Test(description = "check User Registration and login to User new Account")
     public void checkUserRegistration() {
+        // Check User Registration
         mainPage.isShown();
         mainPage.goToUserRegistrationPage();
         userRegistrationPage.isShown();
@@ -168,7 +170,25 @@ public class MainPageTest extends BaseTest {
         userRegistrationPage.sendRegistrationForm();
 
         Assert.assertEquals(userRegistrationPage.getMessageSuccessRegistration(),
-                "Your customer account has been created.");
+                "Your customer account has been created.",
+                "Your customer account has not been created");
+
+        userPersonalArea.isShown();
+        userPersonalArea.logoutAsUser();
+
+        // Check login to User new Account
+        mainPage.isShown();
+        mainPage.loginToUserNewAccount();
+        userPersonalArea.isShown();
+
+        Assert.assertEquals(userPersonalArea.getMessageSuccessLogin(),
+                "You are now logged in as " +
+                        PropertyLoader.getProperty("userFirstName") + " " +
+                        PropertyLoader.getProperty("userLastName") + ".");
+
+        userPersonalArea.logoutAsUser();
+        Assert.assertTrue(userPersonalArea.getMessageSuccessLogout().contains("You are now logged out."),
+                "You are not logged out of your account");
     }
 
 

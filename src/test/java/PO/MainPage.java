@@ -19,7 +19,12 @@ public class MainPage extends BasePage {
     By productRegularPriceCampaigns = By.cssSelector("#box-campaigns  a.link .regular-price");
     By productCampaignPriceCampaigns = By.cssSelector("#box-campaigns  a.link .campaign-price");
     By btnCreateUserAccount = By.xpath("//a[contains(text(),'New customers click here')]");
+    By userEmail = By.cssSelector("form[name='login_form'] input[name='email']");
+    By userPassword = By.cssSelector("form[name='login_form'] input[name='password']");
+    By btnUserLogin = By.cssSelector("form[name='login_form'] button[name='login']");
 
+    UserRegistrationPage userRegistrationPage = new UserRegistrationPage(driver);
+    String userEmailGen = userRegistrationPage.newUser.email;
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -130,6 +135,15 @@ public class MainPage extends BasePage {
     public MainPage goToUserRegistrationPage() {
         logger.info("go to User Registration Page");
         driver.findElement(btnCreateUserAccount).click();
+        return this;
+    }
+
+    @Step("login to User new Account")
+    public MainPage loginToUserNewAccount() {
+        logger.info("login to User new Account");
+        driver.findElement(userEmail).sendKeys(userEmailGen);
+        driver.findElement(userPassword).sendKeys(PropertyLoader.getProperty("userPassword"));
+        driver.findElement(btnUserLogin).click();
         return this;
     }
 
