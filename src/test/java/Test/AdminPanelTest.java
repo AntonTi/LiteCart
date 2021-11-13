@@ -21,7 +21,7 @@ public class AdminPanelTest extends BaseTest {
         adminPanel.logoutAsAdmin();
     }
 
-    @Test(description = "debug Test for fail result")
+    @Test(description = "debug Test for fail result", enabled = false)
     @Severity(SeverityLevel.TRIVIAL)
     public void testFail() {
         adminPanel.isShown();
@@ -74,6 +74,22 @@ public class AdminPanelTest extends BaseTest {
 
         Assert.assertTrue(adminPanel.checkCountryGeoZonesSorting(),
                 "Country Geo Zones are not in alphabetical order");
+
+    }
+
+    @Test(description = "check adding a new Product")
+    @Severity(SeverityLevel.CRITICAL)
+    public void checkAddNewProduct() {
+        adminPanel.isShown();
+        adminPanel.goToItemCatalog();
+        leftMenuCatalogPage.isShown();
+        leftMenuCatalogPage.goToAddNewProduct();
+        addNewProductPage.isShown();
+        addNewProductPage.createNewProduct();
+        addNewProductPage.fillInProductForm();
+        addNewProductPage.saveNewProduct();
+
+        Assert.assertEquals(addNewProductPage.getMessageSuccess(), "Changes saved");
 
     }
 

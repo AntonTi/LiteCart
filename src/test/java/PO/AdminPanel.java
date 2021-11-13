@@ -21,6 +21,7 @@ public class AdminPanel extends BasePage {
     By btnLogout = By.xpath("//div[@class='header']//a[@title='Logout']");
     By leftMenuItem = By.xpath("//ul[@id='box-apps-menu']//li[@id='app-']");
     By leftSubMenuItem = By.cssSelector("div#box-apps-menu-wrapper li[id^='doc-']");
+    By leftMenuItemCatalog = By.xpath("//ul[@id='box-apps-menu']//span[contains(text(),'Catalog')]");
     By leftMenuItemCountries = By.xpath("//ul[@id='box-apps-menu']//span[contains(text(),'Countries')]");
     By leftMenuItemGeoZones = By.xpath("//ul[@id='box-apps-menu']//span[contains(text(),'Geo Zones')]");
     By footerCountries = By.cssSelector("form[name='countries_form'] tr.footer");
@@ -52,14 +53,14 @@ public class AdminPanel extends BasePage {
     public AdminPanel logoutAsAdmin() {
         logger.info("Logout from Admin Panel");
         driver.findElement(btnLogout).click();
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(btnLogin));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(btnLogin));
         return this;
     }
 
-    @Step("open Admin Panel")
+    @Step("Admin Panel is shown")
     public AdminPanel isShown() {
-        logger.info("open Admin Panel");
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(btnLogout));
+        logger.info("Admin Panel is shown");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(btnLogout));
         return this;
     }
 
@@ -95,6 +96,13 @@ public class AdminPanel extends BasePage {
             }
         }
         return true;
+    }
+
+    @Step("go to Left Menu Item 'Catalog'")
+    public AdminPanel goToItemCatalog() {
+        logger.info("go to Left Menu Item 'Catalog'");
+        driver.findElement(leftMenuItemCatalog).click();
+        return this;
     }
 
     @Step("go to Left Menu Item 'Countries'")
