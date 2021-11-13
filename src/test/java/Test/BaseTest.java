@@ -14,6 +14,8 @@ public class BaseTest {
     ProductPage productPage;
     UserRegistrationPage userRegistrationPage;
     UserPersonalArea userPersonalArea;
+    LeftMenuCatalogPage leftMenuCatalogPage;
+    AddNewProductPage addNewProductPage;
 
     @BeforeMethod(description = "Initialize custom driver and Page factory")
     public void init(ITestContext context) {
@@ -24,6 +26,8 @@ public class BaseTest {
         productPage = new ProductPage(driver);
         userRegistrationPage = new UserRegistrationPage(driver);
         userPersonalArea = new UserPersonalArea(driver);
+        leftMenuCatalogPage = new LeftMenuCatalogPage(driver);
+        addNewProductPage = new AddNewProductPage(driver);
     }
 
     @AfterMethod(description = "Finalize custom driver")

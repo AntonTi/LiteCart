@@ -55,6 +55,7 @@ public class UserRegistrationPage extends BasePage {
         driver.findElement(password).sendKeys(newUser.password);
         driver.findElement(passwordConf).sendKeys(newUser.password);
         driver.findElement(captcha).click();
+        logger.warn("manual filling of the captcha field is required");
         WebDriverWait waitForCaptcha = new WebDriverWait(driver, 20);
         //Wait until text box has value equal 4 characters (Captcha has 4 characters)
         waitForCaptcha.until((ExpectedCondition<Boolean>) driver ->
