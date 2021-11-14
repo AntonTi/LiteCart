@@ -86,7 +86,7 @@ public class AdminPanelTest extends BaseTest {
         leftMenuCatalogPage.goToAddNewProduct();
         addNewProductPage.isShown();
         addNewProductPage.createNewProduct();
-        addNewProductPage.fillInProductForm();
+        addNewProductPage.fillOutProductForm();
         addNewProductPage.saveNewProduct();
 
         Assert.assertEquals(addNewProductPage.getMessageSuccess(), "Changes saved");

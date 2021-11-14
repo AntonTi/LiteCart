@@ -3,9 +3,7 @@ package test.java.PO;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import test.java.Models.Product;
 
 import java.io.File;
@@ -68,40 +66,31 @@ public class AddNewProductPage extends BasePage {
         return this;
     }
 
-    @Step("fill in Product Form")
-    public AddNewProductPage fillInProductForm() {
-        logger.info("fill in Product Form");
+    @Step("fill out Product Form")
+    public AddNewProductPage fillOutProductForm() {
+        logger.info("fill out Product Form");
 
         wait.until(ExpectedConditions.elementToBeClickable(uploadImages));
-        logger.info("fill in Product Form ('General' tab is shown)");
-        driver.findElement(name).sendKeys(whiteDuck.name);
-        driver.findElement(code).sendKeys(whiteDuck.code);
-        WebElement checkBoxRoot = driver.findElement(categoriesRoot);
-        if (checkBoxRoot.getAttribute("checked") != null) {
-            checkBoxRoot.click();
-        }
-        WebElement checkBoxDucks = driver.findElement(categoriesDucks);
-        if (checkBoxDucks.getAttribute("checked") == null) {
-            checkBoxDucks.click();
-        }
-        driver.findElement(quantity).clear();
-        driver.findElement(quantity).sendKeys(whiteDuck.quantity);
-        driver.findElement(uploadImages).sendKeys(whiteDuck.pictureUrl);
+        logger.info("fill out Product Form ('General' tab is shown)");
+        fillInField(name, whiteDuck.name);
+        fillInField(code, whiteDuck.code);
+        uncheckCheckBox(categoriesRoot);
+        checkCheckBox(categoriesDucks);
+        fillInField(quantity, whiteDuck.quantity);
+        fillInField(uploadImages, whiteDuck.pictureUrl);
 
         driver.findElement(tabInformation).click();
         wait.until(ExpectedConditions.elementToBeClickable(headTitle));
-        logger.info("fill in Product Form ('Information' tab is shown)");
-        Select selectManufacturer = new Select(driver.findElement(manufacturer));
-        selectManufacturer.selectByVisibleText("ACME Corp.");
-        driver.findElement(shortDescription).sendKeys(whiteDuck.shortDescription);
+        logger.info("fill out Product Form ('Information' tab is shown)");
+        selectFromDropDownList(manufacturer, "ACME Corp.");
+        fillInField(shortDescription, whiteDuck.shortDescription);
         driver.findElement(description).sendKeys(whiteDuck.description);
-        driver.findElement(headTitle).sendKeys(whiteDuck.headTitle);
+        fillInField(headTitle, whiteDuck.headTitle);
 
         driver.findElement(tabPrices).click();
         wait.until(ExpectedConditions.elementToBeClickable(price));
-        logger.info("fill in Product Form ('Prices' tab is shown)");
-        driver.findElement(price).clear();
-        driver.findElement(price).sendKeys(whiteDuck.price);
+        logger.info("fill out Product Form ('Prices' tab is shown)");
+        fillInField(price, whiteDuck.price);
         return this;
     }
 
