@@ -93,5 +93,33 @@ public class AdminPanelTest extends BaseTest {
 
     }
 
+    @Test(description = "check new Product was added and appeared in the Left Menu Item 'Catalog'",
+            dependsOnMethods = {"checkAddNewProduct"})
+    @Severity(SeverityLevel.CRITICAL)
+    public void checkNewProductWasAdded() {
+        adminPanel.isShown();
+        adminPanel.goToItemCatalog();
+        leftMenuCatalogPage.isShown();
+
+        Assert.assertTrue(leftMenuCatalogPage.newProductWasAdded(),
+                "new Product wasn't added and didn't appear in the left menu item 'Catalog'");
+
+    }
+
+    @Test(description = "check that a new Product has appeared on the Main Page",
+            dependsOnMethods = {"checkNewProductWasAdded"})
+    @Severity(SeverityLevel.CRITICAL)
+    public void checkNewProductAppearance() {
+        adminPanel.isShown();
+        adminPanel.goToItemCatalog();
+        leftMenuCatalogPage.isShown();
+        leftMenuCatalogPage.enableNewProduct();
+
+        Assert.assertTrue(mainPage.isShown().newProductHasAppeared(),
+                "new Product hasn't appeared on the Main Page");
+
+        mainPage.goToAdminPanel();
+    }
+
 
 }

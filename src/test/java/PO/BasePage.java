@@ -27,6 +27,7 @@ public class BasePage {
     // HELPER METHODS
 
     public BasePage checkCheckBox(By selector) {
+        wait.until(ExpectedConditions.elementToBeClickable(selector));
         WebElement checkBox = driver.findElement(selector);
         if (checkBox.getAttribute("checked") == null) {
             checkBox.click();
@@ -35,6 +36,7 @@ public class BasePage {
     }
 
     public BasePage uncheckCheckBox(By selector) {
+        wait.until(ExpectedConditions.elementToBeClickable(selector));
         WebElement checkBox = driver.findElement(selector);
         if (checkBox.getAttribute("checked") != null) {
             checkBox.click();

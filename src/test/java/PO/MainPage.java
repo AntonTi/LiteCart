@@ -22,6 +22,7 @@ public class MainPage extends BasePage {
     By userEmail = By.cssSelector("form[name='login_form'] input[name='email']");
     By userPassword = By.cssSelector("form[name='login_form'] input[name='password']");
     By btnUserLogin = By.cssSelector("form[name='login_form'] button[name='login']");
+    By newProduct = By.xpath("//div[@id='box-latest-products']//div[contains(text(),'White Duck')]");
 
     UserRegistrationPage userRegistrationPage = new UserRegistrationPage(driver);
     String userEmailGen = userRegistrationPage.newUser.email;
@@ -144,6 +145,27 @@ public class MainPage extends BasePage {
         driver.findElement(userEmail).sendKeys(userEmailGen);
         driver.findElement(userPassword).sendKeys(PropertyLoader.getProperty("userPassword"));
         driver.findElement(btnUserLogin).click();
+        return this;
+    }
+
+    @Step("check that a new Product has appeared on the Main Page")
+    public boolean newProductHasAppeared() {
+        try {
+            driver.findElement(newProduct).isDisplayed();
+            logger.info("new Product has appeared on the Main Page");
+        } catch (Exception ex) {
+            logger.error("new Product hasn't appeared on the Main Page");
+            ex.printStackTrace();
+            goToAdminPanel();
+            return false;
+        }
+        return true;
+    }
+
+    @Step("go to Admin Panel")
+    public MainPage goToAdminPanel() {
+        logger.info("go to Admin Panel");
+        driver.get(PropertyLoader.getProperty("urlAdmin"));
         return this;
     }
 
