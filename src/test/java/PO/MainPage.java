@@ -148,13 +148,20 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    @Step("check that a new Product has appeared on the Main Page")
-    public boolean newProductHasAppeared() {
+    @Step("go to Admin Panel")
+    public MainPage goToAdminPanel() {
+        logger.info("go to Admin Panel");
+        driver.get(PropertyLoader.getProperty("urlAdmin"));
+        return this;
+    }
+
+    @Step("check that new Product added to Main Page")
+    public boolean newProductAddedToMainPage() {
         try {
             driver.findElement(newProduct).isDisplayed();
-            logger.info("new Product has appeared on the Main Page");
+            logger.info("new Product added to Main Page");
         } catch (Exception ex) {
-            logger.error("new Product hasn't appeared on the Main Page");
+            logger.error("new Product not added to Main Page");
             ex.printStackTrace();
             goToAdminPanel();
             return false;
@@ -162,11 +169,16 @@ public class MainPage extends BasePage {
         return true;
     }
 
-    @Step("go to Admin Panel")
-    public MainPage goToAdminPanel() {
-        logger.info("go to Admin Panel");
-        driver.get(PropertyLoader.getProperty("urlAdmin"));
-        return this;
+    @Step("check that new Product deleted from Main Page")
+    public boolean newProductDeleteFromMainPage() {
+        logger.info("check that new Product deleted from Main Page");
+        boolean isContains = driver.getPageSource().contains("White Duck");
+        if (isContains) {
+            logger.error("new Product not deleted from Main Page");
+            goToAdminPanel();
+            return false;
+        }
+        return true;
     }
 
 

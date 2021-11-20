@@ -33,14 +33,14 @@ public class LeftMenuCatalogPage extends BasePage {
         return this;
     }
 
-    @Step("check new Product was added and appeared in the Left Menu Item 'Catalog'")
-    public boolean newProductWasAdded() {
+    @Step("check new Product added in the Left Menu Item 'Catalog'")
+    public boolean newProductAddedToCatalog() {
         driver.findElement(catalogRubberDucks).click();
         try {
             driver.findElement(newProduct).isDisplayed();
-            logger.info("new Product was added and appeared in the Left Menu Item 'Catalog'");
+            logger.info("new Product added in the Left Menu Item 'Catalog'");
         } catch (Exception ex) {
-            logger.error("new Product wasn't added and didn't appear in the left menu item 'Catalog'");
+            logger.error("new Product not added in the left menu item 'Catalog'");
             ex.printStackTrace();
             return false;
         }
@@ -54,6 +54,26 @@ public class LeftMenuCatalogPage extends BasePage {
         checkCheckBox(checkBoxNewProduct);
         driver.findElement(btnEnable).click();
         return this;
+    }
+
+    @Step("go to New Product Page")
+    public LeftMenuCatalogPage goToNewProductPage() {
+        logger.info("go to New Product Page");
+        driver.findElement(catalogRubberDucks).click();
+        driver.findElement(newProduct).click();
+        return this;
+    }
+
+    @Step("check new Product deleted from the Left Menu Item 'Catalog'")
+    public boolean newProductWasRemoved() {
+        logger.info("check new Product deleted from the Left Menu Item 'Catalog'");
+        driver.findElement(catalogRubberDucks).click();
+        boolean isContains = driver.getPageSource().contains("White Duck");
+        if (isContains) {
+            logger.error("new Product not deleted from the Left Menu Item 'Catalog'");
+            return false;
+        }
+        return true;
     }
 
 
