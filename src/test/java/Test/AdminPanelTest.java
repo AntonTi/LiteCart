@@ -28,7 +28,7 @@ public class AdminPanelTest extends BaseTest {
         fail();
     }
 
-    @Test(description = "check Admin Panel Title", invocationCount = 1)
+    @Test(description = "check Admin Panel Title")
     @Severity(SeverityLevel.NORMAL)
     public void checkAdminPanelTitle() {
         adminPanel.isShown();
@@ -63,7 +63,6 @@ public class AdminPanelTest extends BaseTest {
 
         Assert.assertTrue(adminPanel.checkCountryZonesSorting(),
                 "Country Zones are not in alphabetical order");
-
     }
 
     @Test(description = "check the all Countries sorting of Geo Zones in the Left Menu: 'Geo Zones'")
@@ -74,7 +73,6 @@ public class AdminPanelTest extends BaseTest {
 
         Assert.assertTrue(adminPanel.checkCountryGeoZonesSorting(),
                 "Country Geo Zones are not in alphabetical order");
-
     }
 
     @Test(description = "check adding a new Product")
@@ -90,33 +88,68 @@ public class AdminPanelTest extends BaseTest {
         addNewProductPage.saveNewProduct();
 
         Assert.assertEquals(addNewProductPage.getMessageSuccess(), "Changes saved");
-
     }
 
     @Test(description = "check new Product was added and appeared in the Left Menu Item 'Catalog'",
             dependsOnMethods = {"checkAddNewProduct"})
     @Severity(SeverityLevel.CRITICAL)
-    public void checkNewProductWasAdded() {
+    public void checkNewProductAddedToCatalog() {
         adminPanel.isShown();
         adminPanel.goToItemCatalog();
         leftMenuCatalogPage.isShown();
 
-        Assert.assertTrue(leftMenuCatalogPage.newProductWasAdded(),
+        Assert.assertTrue(leftMenuCatalogPage.newProductAddedToCatalog(),
                 "new Product wasn't added and didn't appear in the left menu item 'Catalog'");
-
     }
 
-    @Test(description = "check that a new Product has appeared on the Main Page",
-            dependsOnMethods = {"checkNewProductWasAdded"})
+    @Test(description = "check that new Product added to Main Page",
+            dependsOnMethods = {"checkNewProductAddedToCatalog"})
     @Severity(SeverityLevel.CRITICAL)
-    public void checkNewProductAppearance() {
+    public void checkNewProductAddedToMainPage() {
         adminPanel.isShown();
         adminPanel.goToItemCatalog();
         leftMenuCatalogPage.isShown();
         leftMenuCatalogPage.enableNewProduct();
 
-        Assert.assertTrue(mainPage.isShown().newProductHasAppeared(),
-                "new Product hasn't appeared on the Main Page");
+        Assert.assertTrue(mainPage.isShown().newProductAddedToMainPage(),
+                "new Product not added to Main Page");
+
+        mainPage.goToAdminPanel();
+    }
+
+    @Test(description = "check that new Product is deleted",
+            dependsOnMethods = {"checkNewProductAddedToMainPage"})
+    @Severity(SeverityLevel.CRITICAL)
+    public void checkNewProductDeleted() {
+        adminPanel.isShown();
+        adminPanel.goToItemCatalog();
+        leftMenuCatalogPage.isShown();
+        leftMenuCatalogPage.goToNewProductPage();
+        newProductPage.deleteNewProduct();
+
+        Assert.assertEquals(newProductPage.getMessageSuccess(), "Post deleted");
+    }
+
+    @Test(description = "check new Product deleted from the Left Menu Item 'Catalog'",
+            dependsOnMethods = {"checkNewProductDeleted"})
+    @Severity(SeverityLevel.CRITICAL)
+    public void checkNewProductDeletedFromCatalog() {
+        adminPanel.isShown();
+        adminPanel.goToItemCatalog();
+        leftMenuCatalogPage.isShown();
+
+        Assert.assertTrue(leftMenuCatalogPage.newProductWasRemoved(),
+                "new Product not deleted from the Left Menu Item 'Catalog'");
+    }
+
+    @Test(description = "check new Product deleted from Main Page",
+            dependsOnMethods = {"checkNewProductDeleted"})
+    @Severity(SeverityLevel.CRITICAL)
+    public void checkNewProductDeletedFromMainPage() {
+        adminPanel.isShown();
+
+        Assert.assertTrue(mainPage.isShown().newProductDeleteFromMainPage(),
+                "new Product not deleted from Main Page");
 
         mainPage.goToAdminPanel();
     }

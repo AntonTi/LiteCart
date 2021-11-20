@@ -14,8 +14,11 @@
                     <include name="checkCountryZonesSorting"/>
                     <include name="checkCountryGeoZonesSorting"/>
                     <include name="checkAddNewProduct"/>
-                    <include name="checkNewProductWasAdded"/>
-                    <include name="checkNewProductAppearance"/>
+                    <include name="checkNewProductAddedToCatalog"/>
+                    <include name="checkNewProductAddedToMainPage"/>
+                    <include name="checkNewProductDeleted"/>
+                    <include name="checkNewProductDeletedFromCatalog"/>
+                    <include name="checkNewProductDeletedFromMainPage"/>
                     <exclude name="testFail"/>
                 </methods>
             </class>
