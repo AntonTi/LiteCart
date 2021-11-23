@@ -23,6 +23,7 @@ public class MainPage extends BasePage {
     By userPassword = By.cssSelector("form[name='login_form'] input[name='password']");
     By btnUserLogin = By.cssSelector("form[name='login_form'] button[name='login']");
     By newProduct = By.xpath("//div[@id='box-latest-products']//div[contains(text(),'White Duck')]");
+    By linkCategories = By.xpath("//div[@id='box-category-tree']//a[contains(text(),'Rubber Ducks')]");
 
     UserRegistrationPage userRegistrationPage = new UserRegistrationPage(driver);
     String userEmailGen = userRegistrationPage.newUser.email;
@@ -179,6 +180,13 @@ public class MainPage extends BasePage {
             return false;
         }
         return true;
+    }
+
+    @Step("go to Categories Page")
+    public MainPage goToCategoriesPage() {
+        logger.info("go to Categories Page");
+        driver.findElement(linkCategories).click();
+        return this;
     }
 
 

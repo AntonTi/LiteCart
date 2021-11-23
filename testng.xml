@@ -42,6 +42,7 @@
                     <include name="checkProdCampaignBoldPrice"/>
                     <include name="checkProdCampaignPriceFontSize"/>
                     <exclude name="checkUserRegistration"/>
+                    <include name="checkShoppingCart"/>
                 </methods>
             </class>
         </classes>
