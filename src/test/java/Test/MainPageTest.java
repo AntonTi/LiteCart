@@ -191,5 +191,19 @@ public class MainPageTest extends BaseTest {
                 "You are not logged out of your account");
     }
 
+    @Test(description = "check adding and removing products to/from Shopping Cart")
+    public void checkShoppingCart() {
+        mainPage.isShown();
+        mainPage.goToCategoriesPage();
+        categoriesPage.isShown();
+        categoriesPage.addProductsToCart();
+        categoriesPage.goToShoppingCart();
+        shoppingCartPage.isShown();
+        shoppingCartPage.removeProductsFromCart();
+
+        Assert.assertEquals(shoppingCartPage.getMessageIsEmpty(),
+                "There are no items in your cart.");
+    }
+
 
 }
