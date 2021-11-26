@@ -11,6 +11,7 @@ public class BaseTest {
     WebDriver driver;
     AdminPanel adminPanel;
     MainPage mainPage;
+    CountriesPage countriesPage;
     ProductPage productPage;
     UserRegistrationPage userRegistrationPage;
     UserPersonalArea userPersonalArea;
@@ -19,6 +20,7 @@ public class BaseTest {
     NewProductPage newProductPage;
     CategoriesPage categoriesPage;
     ShoppingCartPage shoppingCartPage;
+    AddNewCountryPage addNewCountryPage;
 
     @BeforeMethod(description = "Initialize custom driver and Page factory")
     public void init(ITestContext context) {
@@ -26,6 +28,7 @@ public class BaseTest {
         context.setAttribute("WebDriver", driver);
         adminPanel = new AdminPanel(driver);
         mainPage = new MainPage(driver);
+        countriesPage = new CountriesPage(driver);
         productPage = new ProductPage(driver);
         userRegistrationPage = new UserRegistrationPage(driver);
         userPersonalArea = new UserPersonalArea(driver);
@@ -34,6 +37,7 @@ public class BaseTest {
         newProductPage = new NewProductPage(driver);
         categoriesPage = new CategoriesPage(driver);
         shoppingCartPage = new ShoppingCartPage(driver);
+        addNewCountryPage = new AddNewCountryPage(driver);
     }
 
     @AfterMethod(description = "Finalize custom driver")

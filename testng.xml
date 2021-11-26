@@ -19,6 +19,7 @@
                     <include name="checkNewProductDeleted"/>
                     <include name="checkNewProductDeletedFromCatalog"/>
                     <include name="checkNewProductDeletedFromMainPage"/>
+                    <include name="checkLinksOpenInNewWindow"/>
                     <exclude name="testFail"/>
                 </methods>
             </class>
