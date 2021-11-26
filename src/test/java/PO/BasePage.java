@@ -5,9 +5,12 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.Set;
 
 public class BasePage {
 
@@ -55,6 +58,16 @@ public class BasePage {
         Select select = new Select(driver.findElement(selector));
         select.selectByVisibleText(value);
         return this;
+    }
+
+    public static ExpectedCondition<String> anyWindowOtherThan(Set<String> oldWindows) {
+        return new ExpectedCondition<String>() {
+            public String apply(WebDriver driver) {
+                Set<String> handles = driver.getWindowHandles();
+                handles.removeAll(oldWindows);
+                return handles.size() > 0 ? handles.iterator().next() : null;
+            }
+        };
     }
 
 

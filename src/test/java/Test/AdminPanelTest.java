@@ -154,5 +154,18 @@ public class AdminPanelTest extends BaseTest {
         mainPage.goToAdminPanel();
     }
 
+    @Test(description = "check that links on the page 'Add New Country' open in a new window in the Left Menu: 'Countries'")
+    @Severity(SeverityLevel.NORMAL)
+    public void checkLinksOpenInNewWindow() throws InterruptedException {
+        adminPanel.isShown();
+        adminPanel.goToItemCountries();
+        countriesPage.isShown();
+        countriesPage.goToAddNewCountryPage();
+        addNewCountryPage.isShown();
+
+        Assert.assertTrue(addNewCountryPage.checkLinksOpenInNewWindow(),
+                "one or more links don't open in a New Window");
+    }
+
 
 }
